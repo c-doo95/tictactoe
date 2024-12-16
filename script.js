@@ -26,16 +26,6 @@ const gameboard = (() => {
   return { getBoard, placeToken, printBoard, clearBoard };
 })();
 
-function Cell() {
-  let value = " ";
-
-  const addToken = (player) => {
-    value = player;
-  };
-
-  return { addToken };
-}
-
 function GameController(playerXName = "Player X", playerOName = "Player O") {
   const players = [
     {
