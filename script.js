@@ -56,9 +56,11 @@ function GameController(playerXName = "Player X", playerOName = "Player O") {
   const playRound = (row, column) => {
     gameboard.placeToken(row, column, getActivePlayer().token);
 
-    if (checkWin() === false) {
+    if (checkWin() === false && checkFull() === false) {
       switchPlayerTurn();
       printNewRound();
+    } else if (checkWin() === false && checkFull === true) {
+      console.log("Draw!");
     }
   };
 
@@ -99,6 +101,23 @@ function GameController(playerXName = "Player X", playerOName = "Player O") {
           return false;
         }
       }
+    }
+  };
+
+  const checkFull = () => {
+    let x = 0;
+
+    for (let i = 0; i < 3; i++) {
+      if (board[i].includes(" ")) {
+        x += 1;
+      }
+    }
+
+    if (x > 0) {
+      return false;
+    } else {
+      console.log("Draw!");
+      return true;
     }
   };
 
