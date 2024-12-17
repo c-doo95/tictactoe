@@ -121,9 +121,45 @@ function GameController(playerXName = "Player X", playerOName = "Player O") {
     }
   };
 
+  const resetGame = () => {
+    activePlayer = players[0];
+    gameboard.clearBoard();
+    printNewRound();
+  };
+
   printNewRound();
 
-  return { playRound, getActivePlayer };
+  return { playRound, getActivePlayer, resetGame };
 }
 
-const game = GameController();
+const screenController = (function () {
+  const game = GameController();
+  const narrDiv = document.querySelector(".narrator");
+  const boardDiv = document.querySelector(".gameboard");
+
+  const updateScreen = () => {
+    boardDiv.textContent = "";
+
+    const board = gameboard.getBoard();
+    const activePlayer = game.getActivePlayer();
+
+    narrDiv.textContent = `${activePlayer.name}'s turn`;
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        let row = i;
+        let column = j;
+
+        const cell = document.createElement("button");
+        cell.classList.add("cell");
+        cell.textContent = board[row][column];
+        cell.addEventListener("click", () => {
+          game.playRound(row, column);
+        });
+        boardDiv.appendChild(cell);
+      }
+    }
+  };
+
+  updateScreen();
+})();
