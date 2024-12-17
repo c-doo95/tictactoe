@@ -155,6 +155,8 @@ const screenController = (function () {
         cell.textContent = board[row][column];
         cell.addEventListener("click", () => {
           game.playRound(row, column);
+
+          cell.textContent = board[row][column];
         });
         boardDiv.appendChild(cell);
       }
