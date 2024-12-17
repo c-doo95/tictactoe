@@ -157,6 +157,7 @@ const screenController = (function () {
           game.playRound(row, column);
 
           cell.textContent = board[row][column];
+          updateScreen();
         });
         boardDiv.appendChild(cell);
       }
@@ -164,4 +165,6 @@ const screenController = (function () {
   };
 
   updateScreen();
+
+  return { updateScreen };
 })();
