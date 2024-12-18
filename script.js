@@ -1,3 +1,5 @@
+const resetBtn = document.querySelector(".reset");
+
 const gameboard = (() => {
   let board = [
     [" ", " ", " "],
@@ -129,7 +131,7 @@ function GameController(playerXName = "Player X", playerOName = "Player O") {
 
   printNewRound();
 
-  return { playRound, getActivePlayer, resetGame };
+  return { playRound, getActivePlayer, resetGame, checkWin, checkFull };
 }
 
 const screenController = (function () {
@@ -143,7 +145,13 @@ const screenController = (function () {
     const board = gameboard.getBoard();
     const activePlayer = game.getActivePlayer();
 
-    narrDiv.textContent = `${activePlayer.name}'s turn`;
+    if (game.checkWin() === false && game.checkFull() === false) {
+      narrDiv.textContent = `${activePlayer.name}s turn`;
+    } else if (game.checkWin() === false && game.checkFull() === true) {
+      narrDiv.textContent = "Draw! Play again?";
+    } else if (game.checkWin() === true) {
+      narrDiv.textContent = `${activePlayer.name} wins! Play again?`;
+    }
 
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
