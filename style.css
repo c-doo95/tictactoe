@@ -1,0 +1,28 @@
+body {
+  background-color: #316d6e;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-gap: 5%;
+  align-items: center;
+}
+
+.gameboard {
+  aspect-ratio: 1;
+  width: 40%;
+  display: grid;
+  grid-template: repeat(3, auto) / repeat(3, auto);
+  gap: 5%;
+  padding: 5%;
+}
+
+button.cell {
+  aspect-ratio: 1;
+  height: auto;
+}

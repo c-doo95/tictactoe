@@ -153,6 +153,7 @@ const screenController = (function () {
         const cell = document.createElement("button");
         cell.classList.add("cell");
         cell.textContent = board[row][column];
+
         if (board[row][column] === " ") {
           cell.addEventListener("click", () => {
             game.playRound(row, column);
